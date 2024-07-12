@@ -22,7 +22,6 @@ const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee, onSelect }) => {
     <Flex
       gap={"8px"}
       vertical
-      onClick={onSelect}
       style={{
         cursor: "pointer",
         borderRadius: "10px",
@@ -68,6 +67,7 @@ const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee, onSelect }) => {
                 {
                   key: "1",
                   label: "Editar",
+                  onClick: onSelect,
                 },
                 {
                   key: "2",
