@@ -1,0 +1,158 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "isActive": true,
+      "fullName": "João da Silva",
+      "gender": "masculino",
+      "cpf": "123.456.789-00",
+      "rg": "12.345.678-9",
+      "birthdate": "1990-01-01",
+      "position": "Engenheiro",
+      "hasEPI": true,
+      "epis": {
+        "list": [
+          {
+            "activity": "Construção",
+            "epi": "Capacete",
+            "caNumber": "123456"
+          },
+          {
+            "activity": "Construção",
+            "epi": "Luvas",
+            "caNumber": "654321"
+          }
+        ]
+      },
+      "medicalCertificates": [
+        {
+          "name": "Atestado de Saúde",
+          "file": "https://example.com/certificate1.pdf"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "isActive": false,
+      "fullName": "Maria Souza",
+      "gender": "feminino",
+      "cpf": "987.654.321-00",
+      "rg": "98.765.432-1",
+      "birthdate": "1985-05-15",
+      "position": "Técnica de Segurança",
+      "hasEPI": false,
+      "epis": {
+        "list": []
+      },
+      "medicalCertificates": [
+        {
+          "name": "Atestado Médico",
+          "file": "https://example.com/certificate2.pdf"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "isActive": true,
+      "fullName": "Carlos Oliveira",
+      "gender": "masculino",
+      "cpf": "321.654.987-00",
+      "rg": "21.654.789-0",
+      "birthdate": "1992-03-10",
+      "position": "Analista de Sistemas",
+      "hasEPI": true,
+      "epis": {
+        "list": [
+          {
+            "activity": "TI",
+            "epi": "Protetor Auricular",
+            "caNumber": "987654"
+          }
+        ]
+      },
+      "medicalCertificates": []
+    },
+    {
+      "id": 4,
+      "isActive": true,
+      "fullName": "Ana Lima",
+      "gender": "feminino",
+      "cpf": "654.321.987-00",
+      "rg": "65.432.198-1",
+      "birthdate": "1988-07-20",
+      "position": "Gestora de Projetos",
+      "hasEPI": false,
+      "epis": {
+        "list": []
+      },
+      "medicalCertificates": [
+        {
+          "name": "Atestado de Saúde",
+          "file": "https://example.com/certificate3.pdf"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "isActive": true,
+      "fullName": "Pedro Santos",
+      "gender": "masculino",
+      "cpf": "159.753.486-00",
+      "rg": "15.975.348-6",
+      "birthdate": "1995-09-12",
+      "position": "Operador de Máquinas",
+      "hasEPI": true,
+      "epis": {
+        "list": [
+          {
+            "activity": "Operação de Máquinas",
+            "epi": "Botas",
+            "caNumber": "123987"
+          }
+        ]
+      },
+      "medicalCertificates": []
+    },
+    {
+      "id": 6,
+      "isActive": false,
+      "fullName": "Fernanda Costa",
+      "gender": "feminino",
+      "cpf": "789.456.123-00",
+      "rg": "78.945.612-3",
+      "birthdate": "1982-11-30",
+      "position": "Auxiliar Administrativo",
+      "hasEPI": false,
+      "epis": {
+        "list": []
+      },
+      "medicalCertificates": [
+        {
+          "name": "Atestado de Trabalho",
+          "file": "https://example.com/certificate4.pdf"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "isActive": true,
+      "fullName": "Ricardo Almeida",
+      "gender": "masculino",
+      "cpf": "456.123.789-00",
+      "rg": "45.612.378-2",
+      "birthdate": "1993-02-14",
+      "position": "Supervisor de Qualidade",
+      "hasEPI": true,
+      "epis": {
+        "list": [
+          {
+            "activity": "Qualidade",
+            "epi": "Máscara",
+            "caNumber": "852963"
+          }
+        ]
+      },
+      "medicalCertificates": []
+    }
+  ]
+}
