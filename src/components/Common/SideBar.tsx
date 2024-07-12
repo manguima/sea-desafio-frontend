@@ -3,41 +3,62 @@ import React, { useEffect, useState } from "react";
 import { Badge, Flex, Layout, Menu } from "antd";
 import useToken from "antd/es/theme/useToken";
 import { listMenu } from "@/src/utils/constants";
-import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedKey } from "@/src/redux/slices/menuSlice";
+import { RootState } from "@/src/redux/store";
+import { usePathname, useRouter } from "next/navigation";
 
 const { Sider } = Layout;
 
 const Sidebar = () => {
   const router = useRouter();
 
-  const [token, colors] = useToken();
+  const path = usePathname();
 
-  const { Sider } = Layout;
+  const [token, theme] = useToken();
 
-  const [selectedMenu, setSelectedMenu] = useState<String[]>(["0"]);
+  const dispatch = useDispatch();
+  const selectedKey = useSelector((state: RootState) => state.menu.selectedKey);
 
   useEffect(() => {
-    console.log(selectedMenu);
-  }, [selectedMenu]);
+    listMenu.find((value, index) => {
+      value.href === path.split("/")[1] &&
+        dispatch(setSelectedKey([String(index)]));
+    });
+  }, []);
+
+  const handleMenuClick = (e: string[]) => {
+    dispatch(setSelectedKey(e));
+  };
 
   return (
     <Sider
       collapsedWidth={"56px"}
       width={"auto"}
-      style={{ background: "transparent" }}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        background: "transparent",
+      }}
     >
       <Menu
         mode="inline"
-        theme="dark"
+        theme="light"
         style={{
           height: "100vh",
           width: "56px",
           position: "relative",
           borderRadius: "0 20px 20px 0",
           borderRight: 0,
-          background: colors.colorPrimary,
+          background: theme.colorPrimary,
+          top: 0,
           alignContent: "center",
         }}
+        selectedKeys={selectedKey}
       >
         {/* REPRESENTACAO DE LOGO (ACREDITO  QUE É ISSO) */}
         <div
@@ -60,20 +81,23 @@ const Sidebar = () => {
           align="center"
         >
           {listMenu.map((navigate, index) => {
-            const { content, icon, href, badge, badgeIcon } = navigate;
-
-            const Icon = icon;
-            const BadgeIcon: any = badge ? badgeIcon : undefined;
+            const {
+              content,
+              icon: Icon,
+              href,
+              badge,
+              badgeIcon: BadgeIcon,
+            } = navigate;
 
             return (
               <Flex
                 onMouseEnter={() =>
-                  !selectedMenu.find((value, i) => i !== 0) &&
-                  setSelectedMenu((prev) => [...prev, String(index)])
+                  !selectedKey.find((value, i) => i !== 0) &&
+                  handleMenuClick([...selectedKey, String(index)])
                 }
                 onMouseLeave={() =>
-                  setSelectedMenu((prev) => [
-                    ...prev.filter((value, i) => i === 0),
+                  handleMenuClick([
+                    ...selectedKey.filter((value, i) => i === 0),
                   ])
                 }
                 style={{ width: "100%" }}
@@ -85,11 +109,11 @@ const Sidebar = () => {
                   style={{
                     height: "32px",
                     width: "4px",
-                    background: selectedMenu.find(
-                      (value) => String(index) === value
-                    )
-                      ? "#fff"
-                      : "transparent",
+                    background:
+                      selectedKey &&
+                      selectedKey.find((value) => String(index) === value)
+                        ? "#fff"
+                        : "transparent",
                     position: "absolute",
                     transition: "all ease 0.4s",
                     left: 0,
@@ -105,7 +129,7 @@ const Sidebar = () => {
                   //  VALIDA BADGE SOMENTE PARA OS QUE POSSUEM
                   count={
                     badge ? (
-                      <BadgeIcon size={15} color={colors.colorPrimary} />
+                      <BadgeIcon size={15} color={theme.colorPrimary} />
                     ) : null
                   }
                 >
@@ -115,16 +139,16 @@ const Sidebar = () => {
                       margin: 0,
                       width: "32px",
                       height: "32px",
-                      background: selectedMenu.find(
-                        (value) => String(index) === value
-                      )
-                        ? "#fff"
-                        : "#ffffff80",
+                      background:
+                        selectedKey &&
+                        selectedKey.find((value) => String(index) === value)
+                          ? "#fff"
+                          : "#ffffff80",
                     }}
                     // SELECIONA ITEM DO MENU
                     onClick={() => {
-                      setSelectedMenu([String(index)]);
-                      router.push(navigate.href);
+                      handleMenuClick([String(index)]);
+                      router.push(`/${navigate.href}`);
                     }}
                     key={index}
                   >
@@ -135,7 +159,7 @@ const Sidebar = () => {
                       align="center"
                       justify="center"
                     >
-                      <Icon size={22} color={colors.colorPrimary} />
+                      <Icon size={22} color={theme.colorPrimary} />
                     </Flex>
                     {/* {content} */}
                   </Menu.Item>

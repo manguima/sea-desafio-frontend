@@ -3,7 +3,8 @@ import useToken from "antd/es/theme/useToken";
 import Title from "antd/es/typography/Title";
 
 const Shortly = () => {
-  const [token, colors] = useToken();
+  const [token, theme] = useToken();
+
   return (
     <Flex
       justify="center"
@@ -12,12 +13,12 @@ const Shortly = () => {
         height: "55px",
         width: "100%",
         borderRadius: "20px",
-        background: colors.colorPrimary,
+        background: theme.colorPrimary,
       }}
     >
       <Title
         style={{
-          color: colors.colorWhite,
+          color: theme.colorWhite,
           margin: 0,
           padding: 0,
         }}
