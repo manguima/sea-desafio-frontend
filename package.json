@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"npm run dev:next\" \"npm run dev:json-server\"",
+    "dev:next": "next dev",
+    "dev:json-server": "json-server --watch db.json --port 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"npm run start:next\" \"npm run start:json-server\"",
+    "start:next": "next start",
+    "start:json-server": "json-server --watch db.json --port 3001",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,6 +18,7 @@
     "@tabler/icons-react": "^3.10.0",
     "antd": "^5.19.1",
     "axios": "^1.7.2",
+    "concurrently": "^8.2.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
